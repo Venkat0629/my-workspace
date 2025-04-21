@@ -9,9 +9,8 @@ export const routes: Routes = [
             remoteEntry: 'http://localhost:4300/remoteEntry.js',
             remoteName: 'mfeApp',
             exposedModule: './TodoListModule'
-        }).then(m => m.TodoModule).catch(err => {
+        }).then(m => m.TodoListModule).catch(err => {
             console.error('Error loading remote module', err);
-            throw err;
         }),
     },
-];
+  ];
