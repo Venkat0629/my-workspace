@@ -14,6 +14,5 @@ module.exports = withModuleFederationPlugin({
 
   remotes: {
     mfeApp: 'mfeApp@http://localhost:4300/remoteEntry.js',
-  }
-
+  },
 });

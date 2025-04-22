@@ -1,7 +1,7 @@
 ng new my-workspace --no-create-application
 
 ng g application host-app --routing --style=scss
-ng g application mfe-app --routing --style=scss
+ng g application mfe-app --routing --style=sc
 
 npm i webpack webpack-cli --save-dev
 

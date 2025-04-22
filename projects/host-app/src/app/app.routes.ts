@@ -5,12 +5,16 @@ import { loadRemoteModule } from '@angular-architects/module-federation';
 export const routes: Routes = [
     { path: '', component: HomeComponent },
     {
-        path: 'todo-list', loadChildren: () => loadRemoteModule({
+        path: 'todo-list',
+        loadChildren: () => loadRemoteModule({
+            type: 'module',
             remoteEntry: 'http://localhost:4300/remoteEntry.js',
-            remoteName: 'mfeApp',
             exposedModule: './TodoListModule'
-        }).then(m => m.TodoListModule).catch(err => {
+        }).then(m => {
+            console.log('Loaded remote module', m);
+            return m.TodoListModule;
+        }).catch(err => {
             console.error('Error loading remote module', err);
         }),
     },
-  ];
+];
