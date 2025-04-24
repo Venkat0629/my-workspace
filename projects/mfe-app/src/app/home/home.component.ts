@@ -13,7 +13,7 @@ import { AppService } from '../common/app.service';
 export class HomeComponent {
 
   constructor(private appService: AppService) { }
-  
+
   isSignInVisible: boolean = true;
   user: User = {
     email: '',
@@ -27,18 +27,12 @@ export class HomeComponent {
     this.isSignInVisible = !this.isSignInVisible;
   }
 
-  saveUser(): void {
-    const newUser: User = {
-      email: this.user.email,
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
-      password: this.user.password,
-      confirmPassword: this.user.confirmPassword
-    };
+  signUp(): void {
     if (this.user.password !== this.user.confirmPassword) {
       alert('Passwords do not match!');
+      return
     }
-    this.appService.saveUser('signup', newUser).subscribe(
+    this.appService.saveUser('signup', this.user).subscribe(
       (response) => {
         alert('User saved successfully!');
       },
@@ -47,7 +41,34 @@ export class HomeComponent {
         console.error(error);
       }
     );
+    this.user = {
+      email: '',
+      firstName: '',
+      lastName: '',
+      password: '',
+      confirmPassword: ''
+    };
+    this.isSignInVisible = true;
   }
 
+  signIn(): void {
+
+    this.appService.logIn('login', this.user).subscribe(
+      (response) => {
+        alert('User signed in successfully!');
+      },
+      (error) => {
+        alert('Failed to sign in!');
+        console.error(error);
+      }
+    );
+    this.user = {
+      email: '',
+      firstName: '',
+      lastName: '',
+      password: '',
+      confirmPassword: ''
+    };
+  }
 
 }

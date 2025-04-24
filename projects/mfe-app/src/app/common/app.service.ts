@@ -15,5 +15,10 @@ export class AppService {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
         });
     }
+    logIn(endpoint: string, data: any): Observable<any> {
+        return this.http.post(`${this.baseUrl}${endpoint}`, data, {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        });
+    }
 }
 
