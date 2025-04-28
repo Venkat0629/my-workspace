@@ -1,55 +1,56 @@
-<div *ngIf="isSignInVisible" class="auth-container">
-    <h2>Sign In</h2>
-    <form (ngSubmit)="signIn()">
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" [(ngModel)]="user.email" placeholder="Enter your email"
-                required />
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" [(ngModel)]="user.password"
-                placeholder="Enter your password" required />
-        </div>
-        <button type="submit" class="btn btn-primary">Sign In</button>
-    </form>
-    <p>Don't have an account? <button class="btn" (click)="toggleAuthView()">Sign Up</button></p>
-</div>
+<div *ngIf="!isUserLoggedIn" class="welcome-container">
+    <div *ngIf="isSignInVisible" class="auth-container">
+        <h2>Sign In</h2>
+        <form (ngSubmit)="signIn()">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" [(ngModel)]="user.email" placeholder="Enter your email"
+                    required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" [(ngModel)]="user.password"
+                    placeholder="Enter your password" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
+        <p>Don't have an account? <button class="btn" (click)="toggleAuthView()">Sign Up</button></p>
+    </div>
 
-<div *ngIf="!isSignInVisible" class="auth-container">
-    <h2>Sign Up</h2>
-    <form (ngSubmit)="signUp()">
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" [(ngModel)]="user.email" placeholder="Enter your email"
-                required />
-        </div>
-        <div class="form-group">
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName"
-                placeholder="Enter your first name" required />
-        </div>
-        <div class="form-group">
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName"
-                placeholder="Enter your last name" required />
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" [(ngModel)]="user.password"
-                placeholder="Enter your password" required />
-        </div>
-        <div class="form-group">
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="user.confirmPassword"
-                placeholder="Confirm your password" required />
-        </div>
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-    </form>
-    <p>Already have an account? <button class="btn" (click)="toggleAuthView()">Sign In</button></p>
-</div>
+    <div *ngIf="!isSignInVisible" class="auth-container">
+        <h2>Sign Up</h2>
+        <form (ngSubmit)="signUp()">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" [(ngModel)]="user.email" placeholder="Enter your email"
+                    required />
+            </div>
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName"
+                    placeholder="Enter your first name" required />
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName"
+                    placeholder="Enter your last name" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" [(ngModel)]="user.password"
+                    placeholder="Enter your password" required />
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="user.confirmPassword"
+                    placeholder="Confirm your password" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+        <p>Already have an account? <button class="btn" (click)="toggleAuthView()">Sign In</button></p>
+    </div>
 
-<!-- <div class="auth-container">
+    <!-- <div class="auth-container">
     <h2>Forgot Password</h2>
     <form>
         <div class="form-group">
@@ -77,3 +78,11 @@
     </form>
     <p>Forgot your password? <button class="btn">Reset Password</button></p>
 </div> -->
+
+</div>
+
+<div *ngIf="isUserLoggedIn" class="welcome-container">
+    <h2>Welcome Back!</h2>
+    <p>You are logged in as {{ user.email }}.</p>
+    <app-task [tasks]="tasks" />
+</div>
