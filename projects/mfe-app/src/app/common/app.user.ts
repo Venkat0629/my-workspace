@@ -1,3 +1,5 @@
+import { Task } from "./app.task";
+
 export interface User {
     email: string;
     firstName: string;
@@ -5,4 +7,5 @@ export interface User {
     fullName: string;
     password: string;
     confirmPassword: string;
+    tasks?: Task[];
 }

@@ -34,11 +34,7 @@ export class HomeComponent {
     password: '',
     confirmPassword: ''
   };
-  tasks: Task[] = [
-    { id: 1, title: 'Task 1', description: 'Description 1', completed: false },
-    { id: 2, title: 'Task 2', description: 'Description 2', completed: false },
-    { id: 3, title: 'Task 3', description: 'Description 3', completed: false }
-  ];
+  tasks: Task[] = [];
 
   toggleAuthView(): void {
     this.isSignInVisible = !this.isSignInVisible;
@@ -82,6 +78,15 @@ export class HomeComponent {
         }));
         this.isUserLoggedIn = true;
         // alert('User signed in successfully!');
+        this.appService.getUser(response.token).subscribe({
+          next: (user) => {
+            this.tasks = user.tasks || [];
+            console.log('User data:', user);
+          },
+          error: (error) => {
+            console.error('Failed to fetch user data:', error);
+          }
+        });
       },
       error: (error) => {
         alert('Failed to sign in!');
