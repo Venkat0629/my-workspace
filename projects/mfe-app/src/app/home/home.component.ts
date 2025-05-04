@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, ChangeDetectorRef } from '@angular/core';
 import { User } from './../common/app.user';
 import { FormsModule } from '@angular/forms';
 import { AppService } from '../common/app.service';
@@ -15,7 +15,7 @@ import { TaskComponent } from '../task/task.component';
 })
 export class HomeComponent {
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     const storedUser = localStorage.getItem('user');
@@ -27,7 +27,10 @@ export class HomeComponent {
           this.user = user;
         },
         error: (error) => {
+          this.isUserLoggedIn = false;
+          localStorage.removeItem('user');
           console.error('Failed to fetch user data on reload:', error);
+          this.cdr.detectChanges();
         }
       });
     }
@@ -109,6 +112,19 @@ export class HomeComponent {
       fullName: '',
       password: '',
       confirmPassword: ''
+    };
+  }
+  public logout() {
+    localStorage.removeItem('user');
+    this.isUserLoggedIn = false;
+    this.user = {
+      email: '',
+      firstName: '',
+      lastName: '',
+      fullName: '',
+      password: '',
+      confirmPassword: '',
+      tasks: []
     };
   }
 

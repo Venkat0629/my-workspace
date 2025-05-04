@@ -41,59 +41,89 @@
         }
     }
 
+    .accordion-item {
+        margin-bottom: 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #fff;
+        overflow: hidden;
+    }
+
+    .accordion-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        cursor: pointer;
+        background-color: #f1f1f1;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .accordion-header span {
+        flex: 1;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .accordion-header button {
+        margin-left: 5px;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+    }
+
+    .accordion-header button:first-of-type {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+    .accordion-header button:first-of-type:hover {
+        background-color: #218838;
+    }
+
+    .accordion-header button:nth-of-type(2) {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    .accordion-header button:nth-of-type(2):hover {
+        background-color: #c82333;
+    }
+
+    .accordion-header button:last-of-type {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .accordion-header button:last-of-type:hover {
+        background-color: #0056b3;
+    }
+
+    .accordion-body {
+        padding: 0px 10px;
+        color: #333;
+    }
+
     ul {
         list-style: none;
         padding: 0;
         margin-top: 20px;
 
         li {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            background-color: #fff;
-
             span {
                 flex: 1;
                 margin-right: 10px;
 
-                &.completed {
+                &.status {
                     text-decoration: line-through;
                     color: #6c757d;
                 }
             }
-
-            button {
-                margin-left: 5px;
-                padding: 5px 10px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                font-size: 12px;
-
-                &:first-of-type {
-                    background-color: #28a745;
-                    color: #fff;
-
-                    &:hover {
-                        background-color: #218838;
-                    }
-                }
-
-                &:last-of-type {
-                    background-color: #dc3545;
-                    color: #fff;
-
-                    &:hover {
-                        background-color: #c82333;
-                    }
-                }
-            }
         }
     }
+
 
     .task-summary {
         margin-top: 20px;

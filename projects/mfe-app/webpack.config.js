@@ -6,7 +6,6 @@ module.exports = withModuleFederationPlugin({
   filename: 'remoteEntry.js',
 
   exposes: {
-    './TodoListModule': './projects/mfe-app/src/app/todo-list/todo-list.module.ts',
     "./HomeModule": "./projects/mfe-app/src/app/home/home.module.ts",
   },
 

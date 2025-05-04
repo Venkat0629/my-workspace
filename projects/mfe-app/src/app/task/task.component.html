@@ -1,5 +1,7 @@
 <div class="todo-container">
-    <h2>Todo List</h2>
+
+    <h2>Welcome Back, {{ getUser().name }}!</h2>
+
     <form (ngSubmit)="addTask()">
         <input type="text" placeholder="Enter task title" [(ngModel)]="task.title" name="title" required />
         <textarea type="text" placeholder="Enter a new task" [(ngModel)]="task.description" name="taskInput"
@@ -13,14 +15,24 @@
     <div *ngIf="tasks.length === 0" class="no-tasks">
         <p>No tasks available.</p>
     </div>
+
     <ul>
-        <li *ngFor="let task of getTasks; let i = index">
-            <span [class.completed]="task.status">{{ task.title }}</span>
-            <button (click)="toggleCompletion(task.id, task.status)">
-                {{ task.status ? 'Undo' : 'Complete' }}
-            </button>
-            <button (click)="deleteUserTask(task.id)">Delete</button>
+        <li *ngFor="let task of getTasks; let i = index" class="accordion-item">
+            <div class="accordion-header">
+                <span [class.status]="task.status">{{ task.title }}</span>
+                <button (click)="toggleCompletion(task.id, task.status)">
+                    {{ task.status ? 'Undo' : 'Complete' }}
+                </button>
+                <button (click)="deleteUserTask(task.id)">Delete</button>
+                <button (click)="toggleAccordion(i)">View</button>
+            </div>
+            <div *ngIf="activeAccordionIndex === i" class="accordion-body">
+                <p>{{ task.description }}</p>
+            </div>
         </li>
     </ul>
+    <style>
+    
+    </style>
 
 </div>

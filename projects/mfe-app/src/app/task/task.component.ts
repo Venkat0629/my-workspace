@@ -21,6 +21,13 @@ export class TaskComponent {
   @Input({ required: true }) tasks: Task[] = [];
   constructor(private appService: AppService) { }
 
+
+  activeAccordionIndex: number | null = null;
+
+  toggleAccordion(index: number): void {
+    this.activeAccordionIndex = this.activeAccordionIndex === index ? null : index;
+  }
+
   toggleCompletion(taskId: number, status: boolean) {
     const user: any = this.getUser();
     this.appService.updateTask(user.userId, user.token, taskId, !status).subscribe({

@@ -1,5 +1,5 @@
 .auth-container {
-    max-width: 400px;
+    width: 25%;
     margin: 50px auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -84,4 +84,46 @@
             }
         }
     }
+}
+
+.welcome-container {
+    max-width: 100%;
+    // margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+
+
+    .user-info {
+        margin-bottom: 20px;
+
+        h2 {
+            font-size: 24px;
+            color: #333;
+        }
+    }
+
+    .btn-secondary {
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #17a2b8;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        max-width: 100px;
+        text-align: center;
+
+        &:hover {
+            background-color: #138496;
+            transform: scale(1.05);
+        }
+
+        &:active {
+            background-color: #117a8b;
+            transform: scale(0.5);
+        }
+    }
+
 }
