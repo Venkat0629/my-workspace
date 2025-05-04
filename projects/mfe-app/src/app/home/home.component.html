@@ -83,6 +83,6 @@
 
 <div *ngIf="isUserLoggedIn" class="welcome-container">
     <h2>Welcome Back!</h2>
-    <p>You are logged in as {{ user.email }}.</p>
-    <app-task [tasks]="tasks" />
+    <p>You are logged in as {{ user.fullName }}.</p>
+    <app-task [tasks]="user.tasks || []" />
 </div>

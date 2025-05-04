@@ -21,6 +21,15 @@ export class HomeComponent {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       this.isUserLoggedIn = true;
+      const parsedUser = JSON.parse(storedUser);
+      this.appService.getUser(parsedUser.token).subscribe({
+        next: (user) => {
+          this.user = user;
+        },
+        error: (error) => {
+          console.error('Failed to fetch user data on reload:', error);
+        }
+      });
     }
   }
 
@@ -32,9 +41,9 @@ export class HomeComponent {
     lastName: '',
     fullName: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    tasks: []
   };
-  tasks: Task[] = [];
 
   toggleAuthView(): void {
     this.isSignInVisible = !this.isSignInVisible;
@@ -46,7 +55,7 @@ export class HomeComponent {
       return
     }
     this.user.fullName = this.user.firstName + ' ' + this.user.lastName;
-    this.appService.saveUser('signup', this.user).subscribe({
+    this.appService.saveUser(this.user).subscribe({
       next: (response) => {
         alert('User saved successfully!');
       },
@@ -68,20 +77,20 @@ export class HomeComponent {
 
   signIn(): void {
 
-    this.appService.logIn('login', this.user).subscribe({
+    this.appService.logIn(this.user).subscribe({
       next: (response) => {
         localStorage.setItem('user', JSON.stringify({
+          'userId': response.id,
           'token': response.token,
           'name': response.name,
           'email': response.email,
           'expiry': response.expiresIn
         }));
         this.isUserLoggedIn = true;
-        // alert('User signed in successfully!');
+
         this.appService.getUser(response.token).subscribe({
           next: (user) => {
-            this.tasks = user.tasks || [];
-            console.log('User data:', user);
+            this.user = user;
           },
           error: (error) => {
             console.error('Failed to fetch user data:', error);
@@ -104,3 +113,4 @@ export class HomeComponent {
   }
 
 }
+
