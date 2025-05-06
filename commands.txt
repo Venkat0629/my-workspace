@@ -1,14 +1,12 @@
 ng new my-workspace --no-create-application
 
 ng g application host-app --routing --style=scss
-ng g application mfe-app --routing --style=sc
+ng g application mfe-app --routing --style=scss
+ng g application mfe-dashboard --routing --style=scss
 
 npm i webpack webpack-cli --save-dev
 
-unistall your web pack
- 
-npm uninstall webpack webpack-cli
- 
+npm uninstall webpack webpack-cli 
 npm install webpack@5.76.0 webpack-cli@4.10.0 --save-dev
  
 

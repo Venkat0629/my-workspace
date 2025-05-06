@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@angular-architects/module-federation": "^18.0.6",
+    "@angular-devkit/build-angular": "^19.2.10",
     "@angular/compiler-cli": "^19.2.0",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "^5.7.1",
